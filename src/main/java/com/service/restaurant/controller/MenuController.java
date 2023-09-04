@@ -1,11 +1,15 @@
 package com.service.restaurant.controller;
 
-import com.service.restaurant.entiry.MenuItem;
+import com.service.restaurant.entity.MenuItemEntity;
+import com.service.restaurant.modal.MainMenu;
+import com.service.restaurant.modal.MenuItem;
 import com.service.restaurant.service.MenuService;
-import com.service.restaurant.entiry.MainMenu;
+import com.service.restaurant.entity.MainMenuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,12 +20,22 @@ public class MenuController {
     private MenuService menuService;
 
     @GetMapping("/mainmenu")
-    public List<MainMenu> getMainMenuItems() {
+    public List<MainMenuEntity> getMainMenuItems() {
         return menuService.getMainMenuItems();
     }
 
+    @PostMapping("/mainmenu")
+    public MainMenu createMainMenuItem(@RequestBody MainMenu mainMenu) {
+        return menuService.createMainMenuItem(mainMenu);
+    }
+
     @GetMapping("/mainmenu/{id}")
-    public List<MenuItem> getMenuItems(@PathVariable Long id) {
+    public List<MenuItemEntity> getMenuItems(@PathVariable Long id) {
         return menuService.getMenuItemsByMainMenuId(id);
+    }
+
+    @PostMapping("/menuitem")
+    public MenuItem createMenuItem(@RequestBody MenuItem menuItem) {
+        return menuService.createMenuItem(menuItem);
     }
 }

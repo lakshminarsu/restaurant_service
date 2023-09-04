@@ -1,9 +1,9 @@
 package com.service.restaurant.repository;
 
-import com.service.restaurant.entiry.MainMenu;
+import com.service.restaurant.entity.MainMenuEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MainMenuRepository extends JpaRepository<MainMenu, Long> {
+public interface MainMenuRepository extends JpaRepository<MainMenuEntity, Long> {
 }
