@@ -33,6 +33,12 @@ public class MenuService {
         return convertEntityToModal(mainMenuRepository.saveAndFlush(mainMenuEntity));
     }
 
+    public Boolean deleteMainMenu(final Long id) {
+        MainMenuEntity mainMenuEntity = mainMenuRepository.findById(id).get();
+        mainMenuRepository.delete(mainMenuEntity);
+        return true;
+    }
+
     private MainMenu convertEntityToModal(final MainMenuEntity mainMenuEntity) {
         MainMenu mainMenu = new MainMenu();
         mainMenu.setId(mainMenuEntity.getId());
@@ -46,6 +52,12 @@ public class MenuService {
         menuItemEntity.setItemName(menuItem.getItemName());
         menuItemEntity.setItemPrice(menuItem.getItemPrice());
         return convertEntityToModal(menuItemsRepository.saveAndFlush(menuItemEntity));
+    }
+
+    public Boolean deleteMenuItem(final Long id) {
+        MenuItemEntity menuItemEntity = menuItemsRepository.findById(id).get();
+        menuItemsRepository.delete(menuItemEntity);
+        return true;
     }
 
     private MenuItem convertEntityToModal(final MenuItemEntity menuItemEntity) {

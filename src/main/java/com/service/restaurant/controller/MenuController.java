@@ -6,6 +6,7 @@ import com.service.restaurant.modal.MenuItem;
 import com.service.restaurant.service.MenuService;
 import com.service.restaurant.entity.MainMenuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +35,18 @@ public class MenuController {
         return menuService.getMenuItemsByMainMenuId(id);
     }
 
+    @DeleteMapping("/mainmenu/{id}")
+    public List<MenuItemEntity> deleteMainMenu(@PathVariable Long id) {
+        return menuService.getMenuItemsByMainMenuId(id);
+    }
+
     @PostMapping("/menuitem")
     public MenuItem createMenuItem(@RequestBody MenuItem menuItem) {
         return menuService.createMenuItem(menuItem);
+    }
+
+    @DeleteMapping("/menuitem/{id}")
+    public Boolean deleteMenuItem(@PathVariable Long id) {
+        return menuService.deleteMenuItem(id);
     }
 }
