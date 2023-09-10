@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface BillItemRepository extends JpaRepository<BillItemEntity, Long> {
 
-    public List<BillItemEntity> findByBillId(Long billId);
+    //public List<BillItemEntity> findByBillId(Long billId);
 }

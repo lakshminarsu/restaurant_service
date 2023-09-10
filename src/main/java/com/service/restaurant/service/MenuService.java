@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.service.restaurant.converter.ConvertUtils.convertEntityToModal;
+
 @Service
 public class MenuService {
     @Autowired
@@ -39,13 +41,6 @@ public class MenuService {
         return true;
     }
 
-    private MainMenu convertEntityToModal(final MainMenuEntity mainMenuEntity) {
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setId(mainMenuEntity.getId());
-        mainMenu.setItemName(mainMenuEntity.getItemName());
-        return mainMenu;
-    }
-
     public MenuItem createMenuItem(final MenuItem menuItem) {
         MenuItemEntity menuItemEntity = new MenuItemEntity();
         menuItemEntity.setMainMenuItemId(menuItem.getMainMenuItemId());
@@ -58,14 +53,5 @@ public class MenuService {
         MenuItemEntity menuItemEntity = menuItemsRepository.findById(id).get();
         menuItemsRepository.delete(menuItemEntity);
         return true;
-    }
-
-    private MenuItem convertEntityToModal(final MenuItemEntity menuItemEntity) {
-        MenuItem menuItem = new MenuItem();
-        menuItem.setId(menuItemEntity.getId());
-        menuItem.setMainMenuItemId(menuItemEntity.getMainMenuItemId());
-        menuItem.setItemName(menuItemEntity.getItemName());
-        menuItem.setItemPrice(menuItemEntity.getItemPrice());
-        return menuItem;
     }
 }

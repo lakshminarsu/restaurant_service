@@ -21,11 +21,13 @@ public class BillItemEntity {
     @JoinColumn(name = "item_id")
     private MenuItemEntity menuItemEntity;
 
-    //@OneToOne
+    @ManyToOne
+    @JoinColumn(name = "bill_id")
+    private BillEntity billEntity;
     //@JoinColumn(name = "bill_id")
     //private BillEntity billEntity;
-    @Column(name = "bill_id")
-    private Long billId;
+    //@Column(name = "bill_id")
+    //private Long billId;
 
     @Column(name = "qty")
     private Long qty;
@@ -46,13 +48,13 @@ public class BillItemEntity {
         this.id = id;
     }
 
-    public Long getBillId() {
+    /*public Long getBillId() {
         return billId;
     }
 
     public void setBillId(final Long billId) {
         this.billId = billId;
-    }
+    }*/
 
     public Long getQty() {
         return qty;
@@ -60,5 +62,13 @@ public class BillItemEntity {
 
     public void setQty(final Long qty) {
         this.qty = qty;
+    }
+
+    public BillEntity getBillEntity() {
+        return billEntity;
+    }
+
+    public void setBillEntity(final BillEntity billEntity) {
+        this.billEntity = billEntity;
     }
 }

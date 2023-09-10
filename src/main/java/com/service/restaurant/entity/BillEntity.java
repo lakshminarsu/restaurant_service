@@ -5,8 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "bill")
 public class BillEntity {
@@ -14,6 +17,10 @@ public class BillEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    //@OneToMany(targetEntity = BillItemEntity.class)
+    @OneToMany(mappedBy="billEntity")
+    private List<BillItemEntity> billItems;
 
     @Column(name = "price")
     public Long price;
@@ -54,5 +61,13 @@ public class BillEntity {
 
     public void setCreatedTime(final Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public List<BillItemEntity> getBillItems() {
+        return billItems;
+    }
+
+    public void setBillItems(final List<BillItemEntity> billItems) {
+        this.billItems = billItems;
     }
 }

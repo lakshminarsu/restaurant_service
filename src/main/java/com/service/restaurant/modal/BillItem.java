@@ -4,7 +4,6 @@ public class BillItem {
     private Long id;
     private Long billId;
     private MenuItem menuItem;
-
     private Long qty;
 
     public Long getId() {
