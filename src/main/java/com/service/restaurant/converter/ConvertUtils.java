@@ -11,6 +11,8 @@ import com.service.restaurant.modal.MainMenu;
 import com.service.restaurant.modal.MenuItem;
 import com.service.restaurant.modal.TableDetail;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,9 @@ public class ConvertUtils {
             bill.setId(tableEntity.getBill().getId());
             bill.setPrice(tableEntity.getBill().getPrice());
             bill.setStatus(tableEntity.getBill().getStatus());
-            bill.setCreatedTime(tableEntity.getBill().getCreatedTime());
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            String strDate = dateFormat.format(tableEntity.getBill().getCreatedTime());
+            bill.setCreatedTime(strDate);
             tableDetail.setBill(bill);
 
             if (tableEntity.getBill().getBillItems() != null) {
@@ -44,7 +48,6 @@ public class ConvertUtils {
         BillEntity billEntity = new BillEntity();
         billEntity.setPrice(bill.getPrice());
         billEntity.setStatus(bill.getStatus());
-        billEntity.setCreatedTime(bill.getCreatedTime());
 
         List<BillItemEntity> billItemEntities =
         bill.getItems().stream().map(bi->convertModalToEntity(bi, billEntity)).collect(Collectors.toList());
@@ -57,7 +60,9 @@ public class ConvertUtils {
         bill.setId(billEntity.getId());
         bill.setPrice(billEntity.getPrice());
         bill.setStatus(billEntity.getStatus());
-        bill.setCreatedTime(billEntity.getCreatedTime());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String strDate = dateFormat.format(billEntity.getCreatedTime());
+        bill.setCreatedTime(strDate);
 
         if (billEntity.getBillItems() != null) {
             List<BillItem> billItems =

@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.List;
@@ -28,7 +28,8 @@ public class BillEntity {
     @Column(name = "status")
     public String status;
 
-    @Column(name = "created_time")
+    @Column(name = "created_time", nullable = false, updatable = false)
+    @CreationTimestamp
     public Date createdTime;
 
     public Long getId() {

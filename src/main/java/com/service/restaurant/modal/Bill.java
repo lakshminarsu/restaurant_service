@@ -1,13 +1,12 @@
 package com.service.restaurant.modal;
 
-import java.util.Date;
 import java.util.List;
 
 public class Bill {
     private Long id;
     private Long price;
     private String status;
-    private Date createdTime;
+    private String createdTime;
 
     private List<BillItem> items;
 
@@ -35,11 +34,11 @@ public class Bill {
         this.status = status;
     }
 
-    public Date getCreatedTime() {
+    public String getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(final Date createdTime) {
+    public void setCreatedTime(final String createdTime) {
         this.createdTime = createdTime;
     }
 
