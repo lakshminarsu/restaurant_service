@@ -1,7 +1,9 @@
 package com.service.restaurant.service;
 
+import com.service.restaurant.converter.ConvertUtils;
 import com.service.restaurant.entity.BillEntity;
 import com.service.restaurant.entity.TableEntity;
+import com.service.restaurant.modal.Bill;
 import com.service.restaurant.modal.TableDetail;
 import com.service.restaurant.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,22 @@ public class TableService {
     @Autowired
     private TableRepository tableRepository;
 
+    public TableDetail createNewTable(final TableDetail tableDetail) {
+        TableEntity tableEntity = ConvertUtils.convertModalToEntity(tableDetail);
+        return convertEntityToModal(tableRepository.saveAndFlush(tableEntity));
+    }
+
+    public TableDetail updateTable(final TableDetail tableDetail) {
+        TableEntity tableEntity = tableRepository.findById(tableDetail.getId()).get();
+        tableEntity.setName(tableDetail.getName());
+        tableEntity.setSequence(tableDetail.getSequence());
+        return convertEntityToModal(tableRepository.saveAndFlush(tableEntity));
+    }
+
+    public TableDetail deleteTable(final TableDetail tableDetail) {
+        tableRepository.deleteById(tableDetail.getId());
+        return tableDetail;
+    }
 
     public TableDetail getTableById(final Long id) {
         return convertEntityToModal(tableRepository.findById(id).get());

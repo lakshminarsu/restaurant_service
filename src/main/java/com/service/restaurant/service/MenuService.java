@@ -54,4 +54,8 @@ public class MenuService {
         menuItemsRepository.delete(menuItemEntity);
         return true;
     }
+
+    public MenuItem getMenuItemById(final Long id) {
+        return convertEntityToModal(menuItemsRepository.findById(id).get());
+    }
 }

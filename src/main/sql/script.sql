@@ -32,9 +32,9 @@ CREATE TABLE `bill` (
   `id` int NOT NULL AUTO_INCREMENT,
   `price` int DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `created_time` datetime DEFAULT NULL,
+  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `bill_item` (
   `id` int NOT NULL AUTO_INCREMENT,

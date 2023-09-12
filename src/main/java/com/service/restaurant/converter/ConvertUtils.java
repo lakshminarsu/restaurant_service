@@ -24,14 +24,16 @@ public class ConvertUtils {
         tableDetail.setSequence(tableEntity.getSequence());
         //Id 1 is dummy id
         //Table is free. No bill is associated
-        if (tableEntity.getBill().getId() != 1) {
+        if (tableEntity.getBill() != null) {
             Bill bill = new Bill();
             bill.setId(tableEntity.getBill().getId());
             bill.setPrice(tableEntity.getBill().getPrice());
             bill.setStatus(tableEntity.getBill().getStatus());
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-            String strDate = dateFormat.format(tableEntity.getBill().getCreatedTime());
-            bill.setCreatedTime(strDate);
+            if (tableEntity.getBill().getCreatedTime() != null) {
+                String strDate = dateFormat.format(tableEntity.getBill().getCreatedTime());
+                bill.setCreatedTime(strDate);
+            }
             tableDetail.setBill(bill);
 
             if (tableEntity.getBill().getBillItems() != null) {
@@ -49,9 +51,11 @@ public class ConvertUtils {
         billEntity.setPrice(bill.getPrice());
         billEntity.setStatus(bill.getStatus());
 
-        List<BillItemEntity> billItemEntities =
-        bill.getItems().stream().map(bi->convertModalToEntity(bi, billEntity)).collect(Collectors.toList());
-        billEntity.setBillItems(billItemEntities);
+        if (bill.getItems() != null) {
+            List<BillItemEntity> billItemEntities =
+                    bill.getItems().stream().map(bi->convertModalToEntity(bi, billEntity)).collect(Collectors.toList());
+            billEntity.setBillItems(billItemEntities);
+        }
         return billEntity;
     }
 
@@ -116,5 +120,17 @@ public class ConvertUtils {
         menuItem.setItemName(menuItemEntity.getItemName());
         menuItem.setItemPrice(menuItemEntity.getItemPrice());
         return menuItem;
+    }
+
+    public static TableEntity convertModalToEntity(final TableDetail tableDetail) {
+        TableEntity tableEntity = new TableEntity();
+        tableEntity.setName(tableDetail.getName());
+        tableEntity.setSequence(tableDetail.getSequence());
+        if (tableDetail.getBill() != null) {
+            BillEntity billEntity = convertModalToEntity(tableDetail.getBill());
+            tableEntity.setBill(billEntity);
+        }
+
+        return tableEntity;
     }
 }

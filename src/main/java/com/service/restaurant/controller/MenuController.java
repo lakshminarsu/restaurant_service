@@ -49,4 +49,9 @@ public class MenuController {
     public Boolean deleteMenuItem(@PathVariable Long id) {
         return menuService.deleteMenuItem(id);
     }
+
+    @GetMapping("/menuitem/{id}")
+    public MenuItem getMenuItemById(@PathVariable Long id) {
+        return menuService.getMenuItemById(id);
+    }
 }
