@@ -36,8 +36,8 @@ public class MenuController {
     }
 
     @DeleteMapping("/mainmenu/{id}")
-    public List<MenuItemEntity> deleteMainMenu(@PathVariable Long id) {
-        return menuService.getMenuItemsByMainMenuId(id);
+    public boolean deleteMainMenu(@PathVariable Long id) {
+        return menuService.deleteMenuItem(id);
     }
 
     @PostMapping("/menuitem")
@@ -53,5 +53,10 @@ public class MenuController {
     @GetMapping("/menuitem/{id}")
     public MenuItem getMenuItemById(@PathVariable Long id) {
         return menuService.getMenuItemById(id);
+    }
+
+    @GetMapping("/menuitems")
+    public List<MenuItem> getAllMenuItems() {
+        return menuService.getAllMenuItems();
     }
 }

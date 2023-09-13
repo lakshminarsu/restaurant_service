@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.service.restaurant.converter.ConvertUtils.convertEntityToModal;
 
@@ -57,5 +58,12 @@ public class MenuService {
 
     public MenuItem getMenuItemById(final Long id) {
         return convertEntityToModal(menuItemsRepository.findById(id).get());
+    }
+
+    public List<MenuItem> getAllMenuItems() {
+        List<MenuItemEntity> menuItemEntities = menuItemsRepository.findAll();
+        List<MenuItem> menuItems =
+        menuItemEntities.stream().map(mi->convertEntityToModal(mi)).collect(Collectors.toList());
+        return menuItems;
     }
 }
