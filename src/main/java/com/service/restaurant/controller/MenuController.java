@@ -37,7 +37,7 @@ public class MenuController {
 
     @DeleteMapping("/mainmenu/{id}")
     public boolean deleteMainMenu(@PathVariable Long id) {
-        return menuService.deleteMenuItem(id);
+        return menuService.deleteMainMenu(id);
     }
 
     @PostMapping("/menuitem")
