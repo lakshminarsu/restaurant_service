@@ -29,7 +29,7 @@ public class ConvertUtils {
             bill.setId(tableEntity.getBill().getId());
             bill.setPrice(tableEntity.getBill().getPrice());
             bill.setStatus(tableEntity.getBill().getStatus());
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa");
             if (tableEntity.getBill().getCreatedTime() != null) {
                 String strDate = dateFormat.format(tableEntity.getBill().getCreatedTime());
                 bill.setCreatedTime(strDate);
@@ -64,7 +64,7 @@ public class ConvertUtils {
         bill.setId(billEntity.getId());
         bill.setPrice(billEntity.getPrice());
         bill.setStatus(billEntity.getStatus());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa");
         String strDate = dateFormat.format(billEntity.getCreatedTime());
         bill.setCreatedTime(strDate);
 
