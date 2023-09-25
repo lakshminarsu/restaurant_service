@@ -1,22 +1,19 @@
 package com.service.restaurant.service;
 
-import com.service.restaurant.converter.ConvertUtils;
 import com.service.restaurant.entity.BillEntity;
 import com.service.restaurant.entity.BillItemEntity;
-import com.service.restaurant.entity.MenuItemEntity;
-import com.service.restaurant.entity.TableEntity;
 import com.service.restaurant.modal.Bill;
 import com.service.restaurant.modal.BillItem;
-import com.service.restaurant.modal.MenuItem;
 import com.service.restaurant.modal.TableDetail;
 import com.service.restaurant.modal.request.CreateOrderRequest;
 import com.service.restaurant.repository.BillItemRepository;
 import com.service.restaurant.repository.BillRepository;
-import com.service.restaurant.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +32,13 @@ public class BillService {
 
     @Autowired
     private TableService tableService;
+
+    public List<Bill> getBillsByDate(final String billDate) throws ParseException {
+        List<BillEntity> bills = billRepository.findAllByCreatedTime(
+                new SimpleDateFormat("dd-MM-yyyy").parse(billDate));
+
+        return bills.stream().map(b->convertEntityToModal(b)).collect(Collectors.toList());
+    }
 
     @Transactional
     public Bill modifyBill(final Bill bill) {
