@@ -82,6 +82,17 @@ public class BillService {
     }
 
     @Transactional
+    public Bill completeBill(final Long billId) {
+        final String status = "closed";
+        BillEntity billEntity = billRepository.findById(billId).get();
+        if (!billEntity.getStatus().equals(status)) {
+            billEntity.setStatus(status);
+            billEntity = billRepository.saveAndFlush(billEntity);
+        }
+        return convertEntityToModal(billEntity);
+    }
+
+    @Transactional
     public TableDetail createNewOrder(CreateOrderRequest createOrderRequest) {
         //Create Bill
         BillEntity billEntity = new BillEntity();

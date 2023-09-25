@@ -6,6 +6,7 @@ import com.service.restaurant.modal.request.CreateOrderRequest;
 import com.service.restaurant.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +29,11 @@ public class BillController {
     @PutMapping("/bill")
     public Bill modifyBill(@RequestBody Bill bill) {
         return billService.modifyBill(bill);
+    }
+
+    @PatchMapping("/bill/{id}/completeBill")
+    public Bill completeBill(@PathVariable Long id) {
+        return billService.completeBill(id);
     }
 
     @GetMapping("/bill/{id}")
