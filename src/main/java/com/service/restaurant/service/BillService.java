@@ -88,6 +88,7 @@ public class BillService {
         if (!billEntity.getStatus().equals(status)) {
             billEntity.setStatus(status);
             billEntity = billRepository.saveAndFlush(billEntity);
+            tableService.resetTable(billId);
         }
         return convertEntityToModal(billEntity);
     }

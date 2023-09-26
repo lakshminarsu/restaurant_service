@@ -36,6 +36,14 @@ public class TableService {
         return tableDetail;
     }
 
+    public void resetTable(final Long billId) {
+        TableEntity tableDetail = tableRepository.findByBillId(billId);
+        if (tableDetail != null) {
+            tableDetail.setBill(null);
+            tableRepository.saveAndFlush(tableDetail);
+        }
+    }
+
     public TableDetail getTableById(final Long id) {
         return convertEntityToModal(tableRepository.findById(id).get());
     }
