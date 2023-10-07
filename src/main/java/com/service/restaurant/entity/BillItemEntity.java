@@ -32,6 +32,9 @@ public class BillItemEntity {
     @Column(name = "qty")
     private Long qty;
 
+    @Column(name = "item_desc")
+    private String desc;
+
     public MenuItemEntity getMenuItemEntity() {
         return menuItemEntity;
     }
@@ -62,6 +65,14 @@ public class BillItemEntity {
 
     public void setQty(final Long qty) {
         this.qty = qty;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(final String desc) {
+        this.desc = desc;
     }
 
     public BillEntity getBillEntity() {

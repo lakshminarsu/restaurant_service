@@ -5,6 +5,7 @@ public class BillItem {
     private Long billId;
     private MenuItem menuItem;
     private Long qty;
+    private String desc;
 
     public Long getId() {
         return id;
@@ -36,5 +37,13 @@ public class BillItem {
 
     public void setQty(final Long qty) {
         this.qty = qty;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(final String desc) {
+        this.desc = desc;
     }
 }

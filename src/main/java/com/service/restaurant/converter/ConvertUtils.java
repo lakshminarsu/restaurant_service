@@ -83,6 +83,7 @@ public class ConvertUtils {
         billItem.setId(billItemEntity.getId());
         billItem.setBillId(billItemEntity.getBillEntity().getId());
         billItem.setQty(billItemEntity.getQty());
+        billItem.setDesc(billItemEntity.getDesc());
 
         MenuItem menuItem = new MenuItem();
         menuItem.setId(billItemEntity.getMenuItemEntity().getId());
@@ -105,6 +106,7 @@ public class ConvertUtils {
         billItemEntity.setBillEntity(billEntity);
         billItemEntity.setMenuItemEntity(menuItemEntity);
         billItemEntity.setQty(billItem.getQty());
+        billItemEntity.setDesc(billItem.getDesc());
         return billItemEntity;
     }
 

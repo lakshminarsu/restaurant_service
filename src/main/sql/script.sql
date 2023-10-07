@@ -41,13 +41,14 @@ CREATE TABLE `bill_item` (
   `bill_id` int NOT NULL,
   `item_id` int NOT NULL,
   `qty` int NOT NULL,
+  `item_desc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `item_id` (`item_id`),
   KEY `bill_item_ibfk_1` (`bill_id`),
   CONSTRAINT `bill_item_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bill` (`id`),
   CONSTRAINT `bill_item_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `menu_item` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 
