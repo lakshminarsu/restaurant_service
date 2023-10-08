@@ -64,6 +64,7 @@ public class ConvertUtils {
         bill.setId(billEntity.getId());
         bill.setPrice(billEntity.getPrice());
         bill.setStatus(billEntity.getStatus());
+        bill.setTakeAway(billEntity.getTakeAway());
         if (billEntity.getCreatedTime() != null) {
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss aa");
             String strDate = dateFormat.format(billEntity.getCreatedTime());

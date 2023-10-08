@@ -7,6 +7,7 @@ public class Bill {
     private Long price;
     private String status;
     private String createdTime;
+    private Boolean isTakeAway;
 
     private List<BillItem> items;
 
@@ -36,6 +37,14 @@ public class Bill {
 
     public String getCreatedTime() {
         return createdTime;
+    }
+
+    public Boolean getTakeAway() {
+        return isTakeAway;
+    }
+
+    public void setTakeAway(final Boolean takeAway) {
+        isTakeAway = takeAway;
     }
 
     public void setCreatedTime(final String createdTime) {

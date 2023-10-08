@@ -104,6 +104,11 @@ public class BillService {
             totalPrice += item.getMenuItem().getItemPrice() * item.getQty();
         }
         billEntity.setPrice(totalPrice);
+        if (createOrderRequest.getTableId() > 0) {
+            billEntity.setTakeAway(false);
+        } else {
+            billEntity.setTakeAway(true);
+        }
         billEntity = billRepository.saveAndFlush(billEntity);
         Bill bill = convertEntityToModal(billEntity);
         //Add bill items to bill

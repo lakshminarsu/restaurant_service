@@ -32,6 +32,9 @@ public class BillEntity {
     @CreationTimestamp
     public Date createdTime;
 
+    @Column(name = "is_take_away")
+    public Boolean isTakeAway;
+
     public Long getId() {
         return id;
     }
@@ -62,6 +65,14 @@ public class BillEntity {
 
     public void setCreatedTime(final Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Boolean getTakeAway() {
+        return isTakeAway;
+    }
+
+    public void setTakeAway(final Boolean takeAway) {
+        isTakeAway = takeAway;
     }
 
     public List<BillItemEntity> getBillItems() {
