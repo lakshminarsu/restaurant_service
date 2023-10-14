@@ -23,17 +23,17 @@ public class BillEntity {
     private List<BillItemEntity> billItems;
 
     @Column(name = "price")
-    public Long price;
+    private Long price;
 
     @Column(name = "status")
-    public String status;
+    private String status;
 
     @Column(name = "created_time", nullable = false, updatable = false)
     @CreationTimestamp
-    public Date createdTime;
+    private Date createdTime;
 
     @Column(name = "is_take_away")
-    public Boolean isTakeAway;
+    private Boolean isTakeAway;
 
     public Long getId() {
         return id;

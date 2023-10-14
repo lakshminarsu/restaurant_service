@@ -4,11 +4,15 @@ import com.service.restaurant.entity.BillEntity;
 import com.service.restaurant.entity.BillItemEntity;
 import com.service.restaurant.entity.MainMenuEntity;
 import com.service.restaurant.entity.MenuItemEntity;
+import com.service.restaurant.entity.NoteCollectionEntity;
+import com.service.restaurant.entity.NoteTypeEntity;
 import com.service.restaurant.entity.TableEntity;
 import com.service.restaurant.modal.Bill;
 import com.service.restaurant.modal.BillItem;
 import com.service.restaurant.modal.MainMenu;
 import com.service.restaurant.modal.MenuItem;
+import com.service.restaurant.modal.NoteCollection;
+import com.service.restaurant.modal.NoteType;
 import com.service.restaurant.modal.TableDetail;
 
 import java.text.DateFormat;
@@ -137,5 +141,42 @@ public class ConvertUtils {
         }
 
         return tableEntity;
+    }
+
+    public static NoteTypeEntity convertModalToEntity(final NoteType noteType) {
+        NoteTypeEntity noteTypeEntity = new NoteTypeEntity();
+        noteTypeEntity.setId(noteType.getId());
+        noteTypeEntity.setType(noteType.getType());
+
+        return noteTypeEntity;
+    }
+
+    public static NoteType convertEntityToModal(final NoteTypeEntity noteTypeEntity) {
+        NoteType noteType = new NoteType();
+        noteType.setType(noteTypeEntity.getType());
+        noteType.setId(noteTypeEntity.getId());
+        return noteType;
+    }
+
+    public static NoteCollectionEntity convertModalToEntity(final NoteCollection noteCollection) {
+        NoteCollectionEntity noteCollectionEntity = new NoteCollectionEntity();
+        noteCollectionEntity.setId(noteCollection.getId());
+        noteCollectionEntity.setQty(noteCollection.getQty());
+        NoteTypeEntity noteTypeEntity = new NoteTypeEntity();
+        noteTypeEntity.setId(noteCollection.getNoteType().getId());
+        noteTypeEntity.setType(noteCollection.getNoteType().getType());
+        noteCollectionEntity.setNoteEntity(noteTypeEntity);
+        return noteCollectionEntity;
+    }
+
+    public static NoteCollection convertEntityToModal(final NoteCollectionEntity noteCollectionEntity) {
+        NoteCollection noteCollection = new NoteCollection();
+        noteCollection.setId(noteCollectionEntity.getId());
+        noteCollection.setQty(noteCollectionEntity.getQty());
+        NoteType noteType = new NoteType();
+        noteType.setId(noteCollectionEntity.getNoteEntity().getId());
+        noteType.setType(noteCollectionEntity.getNoteEntity().getType());
+        noteCollection.setNoteType(noteType);
+        return noteCollection;
     }
 }

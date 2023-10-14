@@ -51,5 +51,23 @@ CREATE TABLE `bill_item` (
   CONSTRAINT `bill_item_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `menu_item` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `note_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type_UNIQUE` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `note_collection` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `note_type_id` int NOT NULL,
+  `qty` varchar(45) NOT NULL,
+  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `note_type_id` (`note_type_id`),
+  CONSTRAINT `note_collection_ibfk_1` FOREIGN KEY (`note_type_id`) REFERENCES `note_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 
 
