@@ -9,6 +9,8 @@ import com.service.restaurant.repository.NoteTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,11 @@ public class NoteService {
     private NoteTypeRepository noteTypeRepository;
     @Autowired
     private NoteCollectionRepository noteCollectionRepository;
+
+    public List<NoteType> getNoteTypes() {
+        List<NoteTypeEntity> noteTypeEntities = noteTypeRepository.findAll();
+        return noteTypeEntities.stream().map(n->convertEntityToModal(n)).collect(Collectors.toList());
+    }
 
     public NoteType createNoteType(NoteType noteType) {
         NoteTypeEntity noteTypeEntity = convertModalToEntity(noteType);
@@ -45,5 +52,11 @@ public class NoteService {
         List<NoteCollectionEntity> newNoteCollectionEntities =
                 noteCollectionRepository.saveAllAndFlush(noteCollectionEntities);
         return newNoteCollectionEntities.stream().map(n->convertEntityToModal(n)).collect(Collectors.toList());
+    }
+
+    public List<NoteCollection> getNoteCollectionByDate(final String date) throws ParseException {
+        List<NoteCollectionEntity> noteCollectionEntities =
+        noteCollectionRepository.findAllByCreatedTime(new SimpleDateFormat("dd-MM-yyyy").parse(date));
+        return noteCollectionEntities.stream().map(n->convertEntityToModal(n)).collect(Collectors.toList());
     }
 }
