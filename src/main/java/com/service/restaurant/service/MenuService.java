@@ -66,4 +66,19 @@ public class MenuService {
         menuItemEntities.stream().map(mi->convertEntityToModal(mi)).collect(Collectors.toList());
         return menuItems;
     }
+
+    public MainMenu updateMainMenuItem(final MainMenu mainMenu) {
+        MainMenuEntity mainMenuEntity =
+                mainMenuRepository.findById(mainMenu.getId()).get();
+        mainMenuEntity.setItemName(mainMenu.getItemName());
+        return convertEntityToModal(mainMenuRepository.saveAndFlush(mainMenuEntity));
+    }
+
+    public MenuItem updateMenuItem(final MenuItem menuItem) {
+        MenuItemEntity menuItemEntity =
+                menuItemsRepository.findById(menuItem.getId()).get();
+        menuItemEntity.setItemName(menuItem.getItemName());
+        menuItemEntity.setItemPrice(menuItem.getItemPrice());
+        return convertEntityToModal(menuItemsRepository.saveAndFlush(menuItemEntity));
+    }
 }
